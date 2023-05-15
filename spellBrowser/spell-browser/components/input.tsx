@@ -1,12 +1,16 @@
 'use client';
 
-import { Dispatch, EventHandler, SetStateAction, useState } from "react";
+import { MutableRefObject, forwardRef } from "react";
 
 type Props = {
-    spell: string;
-    onChange: any;
+    label: string;
 }
 
-export default function input({spell, onChange}: Props) {
-    return <input type="text" onChange={onChange}/>
-}
+export type Ref = HTMLInputElement;
+
+export const Input = forwardRef<Ref, Props>(function input({label}, ref) {
+    return <>
+        <label htmlFor="tss">{label}:</label>
+        <input ref={ref} type="text" name="tss" id="tss"/>
+    </>
+})
